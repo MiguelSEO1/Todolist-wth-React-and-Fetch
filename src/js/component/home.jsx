@@ -53,7 +53,7 @@ const Home = () => {
     const clearTodos = async () => {
 	    await fetch("https://assets.breatheco.de/apis/fake/todos/user/miguelseo", {
 	    method: "PUT",
-	    body: JSON.stringify([]),
+	    body: JSON.stringify([{label: "Pepito", done: false}]),
 	    headers: {
 		"Content-Type": "application/json"
 	  }
@@ -79,16 +79,19 @@ const Home = () => {
 							e.target.value = "";
 						} }}/>{
 						todoList.map((todo, index) => {
-							return <div key={index} className=" mostrar row alert border">	  
-							<p className=" col-8 d-flex justify-content-start">{todo.label}</p>
-							<p className=" ocultar offset-2 col-2" onClick={() => {
-								deleteTodo(index)
-							}}><i className="fa-solid fa-trash"></i></p>
-					  </div>
+							if(todo.label !== "Pepito"){
+								return <div key={index} className=" mostrar row alert border">	  
+								<p className=" col-8 d-flex justify-content-start">{todo.label}</p>
+								<p className=" ocultar offset-2 col-2" onClick={() => {
+									deleteTodo(index)
+								}}><i className="fa-solid fa-trash"></i></p>
+						  </div>
+							}
+							
 						
 					})}
 
-				<div className="row p-3 border">{todoList.length > 0 ? `${todoList.length} todos`:"no hay tareas"}</div>
+				<div className="row p-3 border">{todoList.length > 1 ? `${todoList.length - 1} todos`:"no hay tareas"}</div>
 				<button onClick={clearTodos}>Clear All</button>
 
 			    </div>
