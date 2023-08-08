@@ -45,7 +45,7 @@ const Home = () => {
     let updatedTodos = [...todoList];
 
     if (updatedTodos.length === 1) {
-      // Si hay una sola tarea y no es "example task", cambia la etiqueta a "example task"
+      // Si hay una sola tarea
       updatedTodos[0].label = "example task";
     } else {
       // Si hay más de una tarea o la última tarea no es la única, filtra la tarea correspondiente
